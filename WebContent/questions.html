@@ -1,0 +1,42 @@
+<div>
+    <div class="container">
+        <div class="row">
+            <div class="page-header">
+                <h1>10 KA DUM <small>Survey</small></h1>
+            </div>
+            <div class="span9">
+                <div ng-show="errors[0]" class="alert alert-error">
+                    <button type="button" class="close" ng-click="clearErrors()">&times;</button>
+                    <h4>Errors! (HTTP {{httpStatus}})</h4>
+                    <br/>
+                    <ul class="unstyled">
+                        <li ng-repeat="error in errors">{{error.path}} - {{error.message}}</li>
+                    </ul>
+                </div>
+ 				<table class="table table-hover" style="margin-top: 0.3em">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Question</th>
+                        <th>&nbsp;</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-hide="questions[0]">
+                            <td colspan="5" style="text-align: center">No Questions found.</td>
+                        </tr>
+                        <tr ng-show="questions[0]" ng-repeat="question in questions | filter:searchValue">
+                            <td>{{$index+1}}</td>
+                            <td>{{question.question}}</td>
+                             <td><input type="radio" ng-model="consent" value="agree">Agree</td>
+                            <td><input type="radio" ng-model="consent" value="disagree">DisAgree</td>
+                            <td>Record your answer!!! click here <a ng-click="recordAnswer(question,consent)"><i class="icon-upload"></i></a></td>
+                            
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
